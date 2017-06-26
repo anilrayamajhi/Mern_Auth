@@ -4,6 +4,7 @@ var
   express = require('express'),
   //instance of express
   app = express(),
+  dotenv = require('dotenv').load({silent: true}),
   http = require('http'),
   logger = require('morgan'),
   mongoose = require('mongoose'),
@@ -14,15 +15,15 @@ var
   usersRoutes = require('./routes/users.js'),
 
   //mongo variable
-  // mongoConnection = process.env.MONGO_URL,
+  mongoConnection = process.env.MONGO_URL,
 
 //Port declaration
   PORT = process.env.PORT || 7000
 
 
-// mongoose.connect(mongoConnection, function(err) {
-//   console.log(err || "Connected to MongoDB (mern-auth)")
-// })
+mongoose.connect(mongoConnection, function(err) {
+  console.log(err || "Connected to MongoDB (mern-auth)")
+})
 
 // define middleware
 // app.use(express.static(path.join(__dirname, '../client')))

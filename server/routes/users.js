@@ -1,6 +1,7 @@
 var
   express = require('express')
   usersRouter = express.Router(),
+  Authentication = require('../controllers/authentication');
 //   usersCtrl = require('../controllers/users.js')
 //
 // usersRouter.post('/register', usersCtrl.register)
@@ -10,9 +11,7 @@ var
 //
 // usersRouter.get('/logout', usersCtrl.logout)
 
-usersRouter.get('/', function(req, res, next){
-  res.send(['waterbottle', 'phone', 'oneplus one']);
-});
+usersRouter.post('/signup', Authentication.signup);
 
 
 module.exports = usersRouter
