@@ -3,7 +3,15 @@ const jwt = require('jwt-simple');
 
 function tokenForUser(user){
   const timestamp = new Date().getTime();
+  // console.log(jwt.encode({ sub: user.id, iat:timestamp }, process.env.secret));
+  // iat: issued at timestamp
   return jwt.encode({ sub: user.id, iat:timestamp }, process.env.secret);
+}
+
+exports.signin = function(req, res, next){
+  //User has already had their email and password authenticated
+  //We just need to give them a token
+  res.send({token: tokenForUser(req.user)})
 }
 
 exports.signup = function(req, res, next){
